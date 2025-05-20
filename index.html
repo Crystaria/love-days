@@ -51,5 +51,58 @@
       font-size: 4em;
       opacity: 0.3;
       animation: float 3s infinite;
-      user-
+      user-select: none;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-heart">❤️</div>
+  <h1>我们在一起的第几天？</h1>
+  <div class="input-box">
+    <input type="text" id="name1" placeholder="Ta的名字" />
+    <input type="text" id="name2" placeholder="你的名字" />
+    <input type="date" id="start-date" />
+    <button onclick="calculateDays()">点击生成</button>
+  </div>
+  <div class="day-counter" id="result"></div>
+  <div class="quote" id="quote"></div>
+
+  <script>
+    const quotes = [
+      "喜欢你不需要理由，但如果需要，那就是因为你是你。",
+      "每天醒来第一件事就是想你。",
+      "你在，我就在。",
+      "你是我永远的520。",
+      "和你在一起的每一天都值得纪念。"
+    ];
+
+    function calculateDays() {
+      const name1 = document.getElementById('name1').value.trim();
+      const name2 = document.getElementById('name2').value.trim();
+      const dateInput = document.getElementById('start-date').value;
+      if (!name1 || !name2 || !dateInput) {
+        alert("请填写所有输入项哦~");
+        return;
+      }
+      const date = new Date(dateInput);
+      const now = new Date();
+      const diff = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+      if (diff < 0) {
+        alert("开始日期不能是未来哦！");
+        return;
+      }
+      const result = document.getElementById('result');
+      result.innerHTML = `💗 ${name1} 和 ${name2} 已经在一起 ${diff} 天啦！`;
+      const quote = document.getElementById('quote');
+      quote.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+    }
+  </script>
+</body>
+</html>
+
 
