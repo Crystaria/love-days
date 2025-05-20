@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <title>~属于我们的日子~2025年特别纪念版</title>
+  <title>我们在一起的第几天</title>
   <style>
     body {
       background: linear-gradient(to bottom, #ffe4e1, #fff0f5);
@@ -84,6 +84,7 @@
       max-width: 300px;
       border-radius: 20px;
       box-shadow: 0 4px 15px rgba(255,105,180,0.5);
+      user-select: none;
     }
 
     /* 动画定义 */
@@ -119,12 +120,13 @@
   <div>
     <div class="count-520" id="count520"></div>
   </div>
-  <div class="quote" id="quote"></div>
 
-  <!-- 这里插入合照 -->
+  <!-- 合照放这里 -->
   <div>
     <img src="photo.jpg" alt="我们的合照" class="photo" />
   </div>
+
+  <div class="quote" id="quote"></div>
 
   <script>
     const quotes = [
@@ -155,11 +157,10 @@
                          `<span class="heart-anim">❤️</span>`;
 
       // 计算过了第几个520
-      // 每年5月20日，从开始那年算起
       let year = startDate.getFullYear();
       let count520 = 0;
       while(true) {
-        let this520 = new Date(year, 4, 20); // 月份0开始，4 = 5月
+        let this520 = new Date(year, 4, 20);
         if (this520 >= startDate && this520 <= now) {
           count520++;
         }
