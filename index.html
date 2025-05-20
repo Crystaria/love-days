@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <title>~我们一起走过的日子~2025年特别纪念版</title>
+  <title>~属于我们的日子~2025年特别纪念版❤</title>
   <style>
     body {
       background: linear-gradient(to bottom, #ffe4e1, #fff0f5);
@@ -79,12 +79,46 @@
       animation: heartbeat 1.5s ease infinite;
       user-select: none;
     }
-    .photo {
+    #photo-wrapper {
+      display: none;
       margin-top: 40px;
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #photo-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      margin: auto;
+      width: 320px;
+      height: 320px;
+      background: pink;
+      clip-path: polygon(
+        50% 15%,
+        80% 0%,
+        100% 20%,
+        100% 50%,
+        50% 100%,
+        0% 50%,
+        0% 20%,
+        20% 0%
+      );
+      opacity: 0.3;
+      pointer-events: none;
+      filter: drop-shadow(0 0 10px #ff69b4);
+      z-index: -1;
+      animation: heartbeat 1.5s infinite;
+    }
+    .photo {
       max-width: 300px;
       border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(255,105,180,0.5);
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
       user-select: none;
+      position: relative;
+      z-index: 1;
     }
 
     /* 动画定义 */
@@ -106,6 +140,11 @@
   </style>
 </head>
 <body>
+  <audio id="bgm" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_1bc8cbb179.mp3?filename=romantic-piano-5829.mp3" type="audio/mpeg">
+    你的浏览器不支持音频播放。
+  </audio>
+
   <div class="bg-heart">❤️</div>
   <h1>我们在一起的第几天</h1>
   <div class="input-box">
@@ -121,9 +160,8 @@
     <div class="count-520" id="count520"></div>
   </div>
 
-  <!-- 合照放这里 -->
-  <div>
-    <img src="photo.jpg" alt="我们的合照" class="photo" />
+  <div id="photo-wrapper">
+    <img id="couple-photo" src="photo.jpg" alt="我们的合照" class="photo" />
   </div>
 
   <div class="quote" id="quote"></div>
@@ -156,7 +194,6 @@
       result.innerHTML = `💗 ${name1} 和 ${name2} 已经在一起 ${diff} 天啦！` +
                          `<span class="heart-anim">❤️</span>`;
 
-      // 计算过了第几个520
       let year = startDate.getFullYear();
       let count520 = 0;
       while(true) {
@@ -175,6 +212,9 @@
       quote.style.opacity = 0;
       quote.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
       quote.style.animation = "fadeInQuote 2s ease forwards";
+
+      // 显示爱心框和合照
+      document.getElementById('photo-wrapper').style.display = 'block';
     }
   </script>
 </body>
